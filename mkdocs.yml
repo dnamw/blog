@@ -1,1 +1,53 @@
-site_name: My Docs
+site_name: Dnamw's blog
+
+theme:
+  name: material
+  custom_dir: overrides
+
+  features:
+    - navigation.sections
+    - navigation.instant
+    - navigation.top
+    - content.code.copy
+  
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default       
+      primary: blue       
+      accent: deep purple   
+      toggle:
+          icon: material/brightness-7
+          name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate 
+      primary: black
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.tilde
+  - pymdownx.superfences
+
+repo_name: GitHub
+repo_url: https://github.com/dnamw/blog
+
+nav:
+  - Home: index.md
+  - Programming Tips:
+      - Index: programming_tips/index.md
+      - C String and String_Views: programming_tips/c_string.md
