@@ -47,7 +47,7 @@ markdown_extensions:
 
 extra_javascript:
   - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 repo_name: GitHub
 repo_url: https://github.com/dnamw/blog
