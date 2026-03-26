@@ -40,8 +40,14 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.highlight:
       linenums: true
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.tilde
   - pymdownx.superfences
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 repo_name: GitHub
 repo_url: https://github.com/dnamw/blog
@@ -51,3 +57,4 @@ nav:
   - Programming Tips:
       - Index: programming_tips/index.md
       - C String and String_Views: programming_tips/c_string.md
+      - Quine: programming_tips/quine.md
