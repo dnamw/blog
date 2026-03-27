@@ -283,7 +283,3 @@ void do_something() {
   fclose(f);
 }
 ```
-
-## The End
-
-你可以在Github仓库中找到当前程序源代码:)

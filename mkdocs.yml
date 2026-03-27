@@ -5,10 +5,13 @@ theme:
   custom_dir: overrides
 
   features:
-    - navigation.sections
-    - navigation.instant
-    - navigation.top
+    - content.code.select
     - content.code.copy
+    - content.code.cop
+    - navigation.tabs
+    - navigation.top
+    - navigation.indexes
+    - navigation.path
   
   palette:
     # Palette toggle for automatic mode
@@ -35,11 +38,30 @@ theme:
         icon: material/brightness-4
         name: Switch to system preference
 
+plugins:
+  - search
+
+  - blog:
+      archive: false
+      # archive_date_format: MMMM yyyy
+      post_readtime: true
+      post_url_format: "{categories}/{slug}"
+      post_url_max_categories: 2
+
+  - document-dates:
+      position: top
+      type: date
+      # exclude:
+      date_format: '%Y-%m-%d'
+      time_format: '%H:%M:%S'
+      show_author: false
+
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.highlight:
       linenums: true
+      linenums_style: pymdownx.inline
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.tilde
@@ -49,12 +71,13 @@ extra_javascript:
   - javascripts/mathjax.js
   - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
-repo_name: GitHub
+repo_name: dnamw/blog
 repo_url: https://github.com/dnamw/blog
 
 nav:
-  - Home: index.md
+  - Home:
+    - intro: index.md
   - Programming Tips:
-      - Index: programming_tips/index.md
-      - C String and String_Views: programming_tips/c_string.md
-      - Quine: programming_tips/quine.md
+    - intro: programming_tips/index.md
+    - C String and String_Views: programming_tips/c_string.md
+    - Quine: programming_tips/quine.md
