@@ -1,0 +1,1616 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Lambda for C - Dnamw's blog | Ciallo～(∠・ω< )⌒★</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/document_dates/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/backdrop.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/light.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/material.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/scale.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/shift-away.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/tippy/tippy.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/core/core.css">
+    
+      <link rel="stylesheet" href="../../assets/document_dates/user.config.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lambda-for-c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Dnamw&#39;s blog" class="md-header__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dnamw's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lambda for C
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dnamw/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dnamw/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../programming_tips/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Programming Tips
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tiny Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Dnamw&#39;s blog" class="md-nav__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dnamw's blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dnamw/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dnamw/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../programming_tips/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programming Tips
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Programming Tips
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming_tips/c_string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C String and String_Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../programming_tips/quine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tiny Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tiny Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda for C
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda for C
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词法分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语法分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语法分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        准备工作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析函数返回值与参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        给匿名函数名字
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析函数体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ast-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回AST Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最终代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The End
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        基本思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词法分析
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        语法分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="语法分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        准备工作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析函数返回值与参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        给匿名函数名字
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析函数体
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ast-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        返回AST Node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最终代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The End
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lambda-for-c">Lambda for C</h1>
+<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-03'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-04-03T23:47:31+08:00'>2026-04-03</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-03'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-04-03T23:47:31+08:00'>2026-04-03</time></span></div></div></div>
+
+<blockquote>
+<p>Reference: <a href="https://www.youtube.com/watch?v=_dVchhnO_KI">A small C compiler By Tsoding</a></p>
+</blockquote>
+<p>在这个小项目中，我们将以<a href="https://github.com/rui314/chibicc">chibicc</a>为基础，为C语言增加lambda表达式，当然，考虑到实现的难度，我们这里的lambda表达式不支持变量捕获与闭包。</p>
+<h2 id="_1">基本思路</h2>
+<p>考虑到我们不准备实现闭包，所以我们打算将lambda表达式解析成一个函数，然后我们在原来lambda表达式的地方放一个指向那个函数的函数指针即可。</p>
+<p>同时，我们引入<code>lambda</code>关键字，用于标明对lambda函数的解析。</p>
+<p>具体来说，我们的工作是：在词法分析阶段，引入<code>lambda</code>关键字，并在语法分析阶段，将其作为一个<code>primary</code>对象进行解析，解析定义的函数，并返回一个指向该函数的函数指针的<code>AST Node</code>。</p>
+<h2 id="_2">词法分析</h2>
+<p>我们在<code>tokenize.c</code>中找到定义关键字的数组，然后加入<code>"lambda"</code>字段即可。</p>
+<h2 id="_3">语法分析</h2>
+<p>我们要在<code>parse.c</code>中的<code>primary</code>函数中添加对<code>lambda</code>语法的支持。</p>
+<h3 id="_4">准备工作</h3>
+<p>我们快速了解两个重要的变量<code>rest</code>和<code>tok</code>。具体而言，<code>tok</code>是“当前读取位置”，我们可以移动它来进行语法分析；<code>rest</code>是“输出参数”，用于把剩余 token 的起点回传给调用者。我们可以看看<code>stmt</code>函数中对<code>if</code>语句的解析：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;if&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_node</span><span class="p">(</span><span class="n">ND_IF</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">cond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">expr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">then</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stmt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;else&quot;</span><span class="p">))</span>
+<span class="w">      </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">els</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stmt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">);</span>
+<span class="w">    </span><span class="o">*</span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>可以看到，最后<code>tok</code>变量指向<code>else</code>语句之后的token，所以我们用<code>tok</code>来赋值<code>rest</code>。</p>
+<p>所以，我们先操作<code>tok</code>，跳过<code>lambda</code>关键字。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_5">解析函数返回值与参数</h3>
+<p>我们知道，<code>lambda</code>之后的代码和正常函数定义唯一的区别在于没有函数名。因此，我们对<code>lambda</code>函数体的解析应当和正常的函数解析类似。</p>
+<p>翻阅代码，我们可以看到<code>function</code>函数，实现了对函数的解析。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="nf">function</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="p">,</span><span class="w"> </span><span class="n">VarAttr</span><span class="w"> </span><span class="o">*</span><span class="n">attr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declarator</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">basety</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这里的<code>basety</code>，其实就是函数的返回值类型，我们可以从调用<code>function</code>函数的地方看到</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="nf">compound_stmt</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;}&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">VarAttr</span><span class="w"> </span><span class="n">attr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">        </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_function</span><span class="p">(</span><span class="n">tok</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">function</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">basety</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">attr</span><span class="p">);</span>
+<span class="w">        </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="c1">// ...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>而<code>basety</code>的解析，则使用了<code>declspec</code>函数，翻阅代码，我们发现第三个参数<code>VarAttr *attr</code>可以为<code>NULL</code>。</p>
+<p>于是，我们写出如下代码</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// parse return type and parameters</span>
+<span class="w">    </span><span class="n">Type</span><span class="o">*</span><span class="w"> </span><span class="n">basety</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Type</span><span class="o">*</span><span class="w"> </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declarator</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">basety</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>然而，我们尝试逐行 debug 运行时，会在调用<code>declarator</code>函数时报错。分析<code>declarator</code>函数源码，我们发现：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="nf">declarator</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointers</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="n">dummy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">declarator</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dummy</span><span class="p">);</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type_suffix</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">declarator</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">type_suffix</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>我们确认我们的<code>tok</code>匹配上了<code>(</code>，然而在这里，我们有一个递归过程，这个过程实际是为了处理C语言中的复杂声明。</p>
+<p>例如，在解析<code>int (*f)(int)</code>时，这里的<code>tok</code>一进来就是<code>(</code>，所以递归进行<code>declarator</code>的解析，解析内容是<code>*f</code>，所以完成后<code>tok</code>就是<code>)</code>，正好可以skip掉，然后我们调用<code>type_suffix</code>来解析后缀内容，也就是<code>(int)</code>。我们再看函数<code>type_suffix</code>，发现它会对后缀的字符做解析，判断是函数<code>(</code>还是数组<code>[</code>，如果是函数，它会调用<code>func_params</code>来解析。翻看<code>func_params</code>，我们看到了一些意料之外，情理之中的内容：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="nf">func_params</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">//...</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cur</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">head</span><span class="p">)</span>
+<span class="w">      </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;,&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;...&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">is_variadic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">      </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">      </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;)&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ty2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declarator</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">ty2</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>是的，在这个函数内部，我们又递归调用了<code>declarator</code>函数来对参数做解析。</p>
+<p>也就是说，对于函数的声明，我们使用两个函数<code>declarator</code>和<code>func_params</code>的双重递归来完成。</p>
+<p>例如，对于函数</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">print_map_array</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="o">*</span><span class="n">f</span><span class="p">)(</span><span class="kt">int</span><span class="p">));</span>
+</code></pre></div></td></tr></table></div>
+<p>我们用<code>declarator</code>解析<code>print_map_array</code>，再用<code>type_suffix</code>也即是<code>func_params</code>来解析函数参数，<code>func_params</code>函数解析过程中便会递归调用<code>declarator</code>来解析每一个参数，在进行第三个参数解析时，<code>declarator</code>会递归调用来解析这一函数指针。</p>
+<p>搞清楚了<code>declarator</code>函数中递归的作用，那么为什么我们的代码会报错呢？原因是：这里<code>declarator</code>遇到<code>(</code>后递归，是为了解析函数指针这类复杂声明；而我们这里的<code>(</code>是函数参数列表起始位置，它自然无法按预期工作。之所以一上来就遇到<code>(</code>，是因为我们的<code>lambda</code>函数根本没有名字。</p>
+<p>因此，我们在这里不能用<code>declarator</code>来解析函数声明。但是从上面的分析中，我们可以发现：我们实际上只需要解析函数参数就行，即，我们已经解析完了<code>basety</code>，按照<code>chibicc</code>的工作流程，我们只需要用<code>type_suffix</code>来解析后缀就行。而我们这里要求后缀一定是一个<code>(</code>，因此，我们只需要跳过<code>(</code>并调用<code>func_params</code>即可。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">)){</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func_params</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">basety</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_6">给匿名函数名字</h3>
+<p>在解析函数体之前，我们还要注意一个问题，尽管我们的<code>lambda</code>是匿名函数，但是在后期生成函数对象时，我们必须赋予名字，否则链接和调用都会出现问题。</p>
+<p>为了解决这个问题，我们使用计数器生成形如<code>_lambda_id</code>的名字。当然，它不必是全局变量，声明为静态变量即可。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// create a unique name for the lambda function</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">lambda_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snprintf</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_lambda_%zu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_count</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// don&#39;t care heap memory</span>
+<span class="n">snprintf</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_lambda_%zu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_count</span><span class="o">++</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<blockquote>
+<p>这里有一个小技巧：第一次调用<code>snprintf</code>函数时，我们传入<code>NULL, 0</code>，虽然不会写入内容，但<code>snprintf</code>的返回值会告诉我们目标字符串格式化后的长度。</p>
+</blockquote>
+<h3 id="_7">解析函数体</h3>
+<p><code>function</code>函数内部已经实现了对函数体的解析，如下</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="nf">function</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="p">,</span><span class="w"> </span><span class="n">VarAttr</span><span class="w"> </span><span class="o">*</span><span class="n">attr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_func</span><span class="p">(</span><span class="n">name_str</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Redeclaration</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_function</span><span class="p">)</span>
+<span class="w">      </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;redeclared as a different kind of symbol&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_definition</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="p">))</span>
+<span class="w">      </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;redefinition of %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">name_str</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">attr</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="p">)</span>
+<span class="w">      </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;static declaration follows a non-static declaration&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_definition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_definition</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_gvar</span><span class="p">(</span><span class="n">name_str</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_definition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attr</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">attr</span><span class="o">-&gt;</span><span class="n">is_inline</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">attr</span><span class="o">-&gt;</span><span class="n">is_extern</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_inline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attr</span><span class="o">-&gt;</span><span class="n">is_inline</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_inline</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">consume</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;;&quot;</span><span class="p">))</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">current_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="p">;</span>
+<span class="w">  </span><span class="n">locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">  </span><span class="n">enter_scope</span><span class="p">();</span>
+<span class="w">  </span><span class="n">create_param_lvars</span><span class="p">(</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">params</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// A buffer for a struct/union return value is passed</span>
+<span class="w">  </span><span class="c1">// as the hidden first parameter.</span>
+<span class="w">  </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">rty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">return_ty</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_STRUCT</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_UNION</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
+<span class="w">    </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">rty</span><span class="p">));</span>
+
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">is_variadic</span><span class="p">)</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">va_area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;__va_area__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="mi">136</span><span class="p">));</span>
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">alloca_bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;__alloca_size__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">ty_char</span><span class="p">));</span>
+
+<span class="w">  </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// [https://www.sigbus.info/n1570#6.4.2.2p1] &quot;__func__&quot; is</span>
+<span class="w">  </span><span class="c1">// automatically defined as a local variable containing the</span>
+<span class="w">  </span><span class="c1">// current function name.</span>
+<span class="w">  </span><span class="n">push_scope</span><span class="p">(</span><span class="s">&quot;__func__&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">new_string_literal</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// [GNU] __FUNCTION__ is yet another name of __func__.</span>
+<span class="w">  </span><span class="n">push_scope</span><span class="p">(</span><span class="s">&quot;__FUNCTION__&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">new_string_literal</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compound_stmt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span>
+<span class="w">  </span><span class="n">leave_scope</span><span class="p">();</span>
+<span class="w">  </span><span class="n">resolve_goto_labels</span><span class="p">();</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>可以看到，它进行了对函数是否重定义、是否有定义、静态、内联的检查，我们不需要做这些，直接按照<code>lambda</code>函数的实际情况来实现。</p>
+<p>当然，在这里我们需要注意一个问题：源代码中我们修改的<code>current_fn</code>和<code>locals</code>是全局变量。在标准 C 中，不存在函数内再定义函数的语法，因此在普通函数解析时，把这两个做成全局变量是可行的。但是我们的<code>lambda</code>函数会出现在函数内部，如果直接覆盖这两个全局变量，会导致解析完<code>lambda</code>后，外层函数的解析状态出错。</p>
+<p>所以，我们需要提前保存这两个全局变量，在<code>lambda</code>解析完成后恢复。<del>正如我们在汇编时保存寄存器那样</del></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// parse return type and parameters</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func_params</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">basety</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// create a unique name for the lambda function</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">lambda_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">snprintf</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_lambda_%zu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_count</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">malloc</span><span class="p">(</span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// don&#39;t care heap memory</span>
+<span class="w">    </span><span class="n">snprintf</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;_lambda_%zu&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">lambda_count</span><span class="o">++</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// parse function body</span>
+<span class="w">    </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_gvar</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">ty</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_function</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_definition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_static</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_inline</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">is_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">saved_current_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_fn</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">saved_locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">current_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="p">;</span>
+<span class="w">    </span><span class="n">locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">enter_scope</span><span class="p">();</span>
+<span class="w">    </span><span class="n">create_param_lvars</span><span class="p">(</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">params</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// A buffer for a struct/union return value is passed</span>
+<span class="w">    </span><span class="c1">// as the hidden first parameter.</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">rty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">return_ty</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_STRUCT</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_UNION</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">rty</span><span class="o">-&gt;</span><span class="n">size</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span>
+<span class="w">      </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">rty</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">is_variadic</span><span class="p">)</span>
+<span class="w">      </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">va_area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;__va_area__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="mi">136</span><span class="p">));</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">alloca_bottom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;__alloca_size__&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">ty_char</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;{&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// [https://www.sigbus.info/n1570#6.4.2.2p1] &quot;__func__&quot; is</span>
+<span class="w">    </span><span class="c1">// automatically defined as a local variable containing the</span>
+<span class="w">    </span><span class="c1">// current function name.</span>
+<span class="w">    </span><span class="n">push_scope</span><span class="p">(</span><span class="s">&quot;__func__&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">new_string_literal</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">    </span><span class="c1">// [GNU] __FUNCTION__ is yet another name of __func__.</span>
+<span class="w">    </span><span class="n">push_scope</span><span class="p">(</span><span class="s">&quot;__FUNCTION__&quot;</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span>
+<span class="w">        </span><span class="n">new_string_literal</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">array_of</span><span class="p">(</span><span class="n">ty_char</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compound_stmt</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span>
+<span class="w">    </span><span class="n">leave_scope</span><span class="p">();</span>
+<span class="w">    </span><span class="n">resolve_goto_labels</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">current_fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saved_current_fn</span><span class="p">;</span>
+<span class="w">    </span><span class="n">locals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">saved_locals</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="ast-node">返回AST Node</h3>
+<p>此时，我们已经完成了对<code>lambda</code>函数体的解析，只需要返回一个指向该函数的函数指针 AST Node 即可。翻阅<code>primary</code>的代码，我们很快就能找到根据标识符 token 创建 Node 的代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TK_IDENT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Variable or enum constant</span>
+<span class="w">    </span><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_var</span><span class="p">(</span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="o">*</span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// For &quot;static inline&quot; function</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sc</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">is_function</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current_fn</span><span class="p">)</span>
+<span class="w">        </span><span class="n">strarray_push</span><span class="p">(</span><span class="o">&amp;</span><span class="n">current_fn</span><span class="o">-&gt;</span><span class="n">refs</span><span class="p">,</span><span class="w"> </span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+<span class="w">      </span><span class="k">else</span>
+<span class="w">        </span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">is_root</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">new_var_node</span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">enum_ty</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">new_num</span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">enum_val</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">))</span>
+<span class="w">      </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;implicit declaration of a function&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;undefined variable&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这里我们调用<code>find_var</code>来找到变量对应的作用域。它的原理是根据<code>tok</code>中的标识符名字来搜索；然而问题在于，我们这里的<code>tok</code>不可能包含该标识符名字，因为这个名字是额外生成的。</p>
+<p>因此，我们不如直接改写函数逻辑，直接按照标识符名字来搜索，不必依赖token。我们基于<code>find_var</code>函数来修改。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// Find a variable by c_str name.</span>
+<span class="k">static</span><span class="w"> </span><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="nf">find_var_c_str</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Scope</span><span class="w"> </span><span class="o">*</span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">scope</span><span class="p">;</span><span class="w"> </span><span class="n">sc</span><span class="p">;</span><span class="w"> </span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="n">sc2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hashmap_get2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">vars</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">len</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sc2</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">sc2</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>所以我们生成Node的方法如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_var_c_str</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="n">Node</span><span class="o">*</span><span class="w"> </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_var_node</span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<p>然而，我们还需要把它转成函数指针，翻阅代码中有关取地址符<code>&amp;</code>的解析，我们发现要调用<code>new_unary</code>函数，并传入<code>ND_ADDR</code>参数。</p>
+<p>因此，我们最终的返回代码如下</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_var_c_str</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="k">return</span><span class="w"> </span><span class="n">new_unary</span><span class="p">(</span><span class="n">ND_ADDR</span><span class="p">,</span><span class="w"> </span><span class="n">new_var_node</span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">),</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">最终代码</h3>
+<p>当然，别忘了我们还要设置<code>rest</code>的值。解析完<code>lambda</code>之后，<code>tok</code>指向<code>}</code>之后的内容，直接用<code>tok</code>设置即可。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">*</span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>完整代码可见<a href="https://github.com/dnamw/chibicc_with_lambda">Github</a></p>
+<p>先<code>make</code>，然后取消<code>demo.c</code>里的注释，再运行</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./chibicc<span class="w"> </span>-o<span class="w"> </span>demo<span class="w"> </span>demo.c<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./demo
+</code></pre></div></td></tr></table></div>
+<p>来确认工作正常。</p>
+<h2 id="the-end">The End</h2>
+<p>再次感谢<a href="https://github.com/rui314/chibicc">chibicc</a>项目，毫无疑问是一个优秀的、简易而不简单的C语言编译器。</p>
+<p>这个项目的代码十分优秀，使得我们不需要了解具体细节就可以完成功能的实现。这体现了代码的可扩展性的重要性。相比于扩展功能本身，学习其代码也是收益颇丰。</p>
+<p>在给现有项目添加功能时，阅读代码，熟悉接口，遵循其用法便是最佳实践。当然，在有LLM加持的时代，这些功能可以变得更加简单，更加便利。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.select", "content.code.copy", "content.code.cop", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.path"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../assets/document_dates/tippy/popper.min.js"></script>
+      
+        <script src="../../assets/document_dates/tippy/tippy.umd.min.js"></script>
+      
+        <script src="../../assets/document_dates/core/md5.min.js"></script>
+      
+        <script src="../../assets/document_dates/core/default.config.js"></script>
+      
+        <script src="../../assets/document_dates/user.config.js"></script>
+      
+        <script src="../../assets/document_dates/core/utils.js"></script>
+      
+        <script src="../../assets/document_dates/core/core.js"></script>
+      
+    
+  </body>
+</html>
