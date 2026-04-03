@@ -81,3 +81,6 @@ nav:
     - intro: programming_tips/index.md
     - C String and String_Views: programming_tips/c_string.md
     - Quine: programming_tips/quine.md
+  - Tiny Projects:
+    - intro: tiny_projects/index.md
+    - Lambda for C: tiny_projects/lambda_for_c.md
