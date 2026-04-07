@@ -9,26 +9,28 @@
       
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../intro/">
       
+      
+        <link rel="next" href="../variable_capture/">
       
       
         
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Lambda for C - Dnamw's blog | Ciallo～(∠・ω< )⌒★</title>
+        <title>Simple Lambda - Dnamw's blog | Ciallo～(∠・ω< )⌒★</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -47,25 +49,25 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/document_dates/fonts/material-icons.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/backdrop.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/backdrop.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/light.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/light.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/material.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/material.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/scale.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/scale.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/shift-away.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/shift-away.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/tippy/tippy.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/tippy.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/core/core.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/core/core.css">
     
-      <link rel="stylesheet" href="../../assets/document_dates/user.config.css">
+      <link rel="stylesheet" href="../../../assets/document_dates/user.config.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -90,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lambda-for-c" class="md-skip">
+        <a href="#simple-lambda" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +106,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Dnamw&#39;s blog" class="md-header__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+    <a href="../../.." title="Dnamw&#39;s blog" class="md-header__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -124,7 +126,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Lambda for C
+              Simple Lambda
             
           </span>
         </div>
@@ -244,20 +246,17 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../.." class="md-tabs__link">
-          
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
   
   
     
   
   Home
 
-        </a>
-      </li>
-    
+      </a>
+    </li>
   
 
       
@@ -269,7 +268,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../programming_tips/" class="md-tabs__link">
+        <a href="../../../programming_tips/" class="md-tabs__link">
           
   
   
@@ -293,7 +292,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -329,7 +328,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Dnamw&#39;s blog" class="md-nav__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+    <a href="../../.." title="Dnamw&#39;s blog" class="md-nav__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -358,30 +357,9 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
         
-          
-        
-      
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../.." class="md-nav__link ">
-              
   
   
   <span class="md-ellipsis">
@@ -395,26 +373,7 @@
   
   
 
-            </a>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_1">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Home
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-          </ul>
-        </nav>
-      
+      </a>
     </li>
   
 
@@ -451,7 +410,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../programming_tips/" class="md-nav__link ">
+            <a href="../../../programming_tips/" class="md-nav__link ">
               
   
   
@@ -495,7 +454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../programming_tips/c_string/" class="md-nav__link">
+      <a href="../../../programming_tips/c_string/" class="md-nav__link">
         
   
   
@@ -523,7 +482,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../programming_tips/quine/" class="md-nav__link">
+      <a href="../../../programming_tips/quine/" class="md-nav__link">
         
   
   
@@ -586,7 +545,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   
@@ -631,6 +590,94 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda for C
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lambda for C
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -646,7 +693,7 @@
   <span class="md-ellipsis">
     
   
-    Lambda for C
+    Simple Lambda
   
 
     
@@ -664,7 +711,7 @@
   <span class="md-ellipsis">
     
   
-    Lambda for C
+    Simple Lambda
   
 
     
@@ -795,10 +842,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-end" class="md-nav__link">
+  <a href="#to-be-continued" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The End
+        To be continued
       
     </span>
   </a>
@@ -808,6 +855,42 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variable_capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variable Capture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -953,10 +1036,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-end" class="md-nav__link">
+  <a href="#to-be-continued" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The End
+        To be continued
       
     </span>
   </a>
@@ -978,6 +1061,66 @@
 
 
 
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Tiny Projects
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../intro/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Lambda for C
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
 
               
               <article class="md-content__inner md-typeset">
@@ -989,8 +1132,8 @@
   
 
 
-<h1 id="lambda-for-c">Lambda for C</h1>
-<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-03'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-04-03T23:47:31+08:00'>2026-04-03</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-03'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-04-03T23:47:31+08:00'>2026-04-03</time></span></div></div></div>
+<h1 id="simple-lambda">Simple Lambda</h1>
+<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-03'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-04-03T19:53:00.201414+08:00'>2026-04-03</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-04-07'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-04-07T22:04:20.786032+08:00'>2026-04-07</time></span></div></div></div>
 
 <blockquote>
 <p>Reference: <a href="https://www.youtube.com/watch?v=_dVchhnO_KI">A small C compiler By Tsoding</a></p>
@@ -1191,6 +1334,11 @@
 <blockquote>
 <p>这里有一个小技巧：第一次调用<code>snprintf</code>函数时，我们传入<code>NULL, 0</code>，虽然不会写入内容，但<code>snprintf</code>的返回值会告诉我们目标字符串格式化后的长度。</p>
 </blockquote>
+<details class="info">
+<summary>另一种简单的方法</summary>
+<p>实际上，在 parse.c 的代码中，有一个叫<code>new_unique_name</code>的函数，采用全局计数器的方案来生成匿名名称。<br />
+故我们直接调用<code>new_unique_name</code>即可。<del>不必手搓</del></p>
+</details>
 <h3 id="_7">解析函数体</h3>
 <p><code>function</code>函数内部已经实现了对函数体的解析，如下</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
@@ -1522,14 +1670,12 @@
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">*</span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
 <p>完整代码可见<a href="https://github.com/dnamw/chibicc_with_lambda">Github</a></p>
-<p>先<code>make</code>，然后取消<code>demo.c</code>里的注释，再运行</p>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>./chibicc<span class="w"> </span>-o<span class="w"> </span>demo<span class="w"> </span>demo.c<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./demo
+<p>运行</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./chibicc<span class="w"> </span>-o<span class="w"> </span>demo/demo<span class="w"> </span>demo/demo.c<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./demo
 </code></pre></div></td></tr></table></div>
 <p>来确认工作正常。</p>
-<h2 id="the-end">The End</h2>
-<p>再次感谢<a href="https://github.com/rui314/chibicc">chibicc</a>项目，毫无疑问是一个优秀的、简易而不简单的C语言编译器。</p>
-<p>这个项目的代码十分优秀，使得我们不需要了解具体细节就可以完成功能的实现。这体现了代码的可扩展性的重要性。相比于扩展功能本身，学习其代码也是收益颇丰。</p>
-<p>在给现有项目添加功能时，阅读代码，熟悉接口，遵循其用法便是最佳实践。当然，在有LLM加持的时代，这些功能可以变得更加简单，更加便利。</p>
+<h2 id="to-be-continued">To be continued</h2>
+<p>下回: <a href="../variable_capture/">Variable Capture</a></p>
 
 
 
@@ -1588,28 +1734,28 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.select", "content.code.copy", "content.code.cop", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.path"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.select", "content.code.copy", "content.code.cop", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.path"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../javascripts/mathjax.js"></script>
+        <script src="../../../javascripts/mathjax.js"></script>
       
         <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
       
-        <script src="../../assets/document_dates/tippy/popper.min.js"></script>
+        <script src="../../../assets/document_dates/tippy/popper.min.js"></script>
       
-        <script src="../../assets/document_dates/tippy/tippy.umd.min.js"></script>
+        <script src="../../../assets/document_dates/tippy/tippy.umd.min.js"></script>
       
-        <script src="../../assets/document_dates/core/md5.min.js"></script>
+        <script src="../../../assets/document_dates/core/md5.min.js"></script>
       
-        <script src="../../assets/document_dates/core/default.config.js"></script>
+        <script src="../../../assets/document_dates/core/default.config.js"></script>
       
-        <script src="../../assets/document_dates/user.config.js"></script>
+        <script src="../../../assets/document_dates/user.config.js"></script>
       
-        <script src="../../assets/document_dates/core/utils.js"></script>
+        <script src="../../../assets/document_dates/core/utils.js"></script>
       
-        <script src="../../assets/document_dates/core/core.js"></script>
+        <script src="../../../assets/document_dates/core/core.js"></script>
       
     
   </body>
