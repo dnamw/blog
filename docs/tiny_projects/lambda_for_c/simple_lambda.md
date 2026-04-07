@@ -1,4 +1,4 @@
-# Lambda for C
+# Simple Lambda
 
 > Reference: [A small C compiler By Tsoding](https://www.youtube.com/watch?v=_dVchhnO_KI)
 
@@ -177,8 +177,11 @@ snprintf(name, len + 1, "_lambda_%zu", lambda_count++);
 
 > 这里有一个小技巧：第一次调用`snprintf`函数时，我们传入`NULL, 0`，虽然不会写入内容，但`snprintf`的返回值会告诉我们目标字符串格式化后的长度。
 
-### 解析函数体
+??? info "另一种简单的方法"
+    实际上，在 parse.c 的代码中，有一个叫`new_unique_name`的函数，采用全局计数器的方案来生成匿名名称。  
+    故我们直接调用`new_unique_name`即可。~~不必手搓~~
 
+### 解析函数体
 
 `function`函数内部已经实现了对函数体的解析，如下
 
@@ -387,18 +390,14 @@ return new_unary(ND_ADDR, new_var_node(sc->var, start), start);
 
 完整代码可见[Github](https://github.com/dnamw/chibicc_with_lambda)
 
-先`make`，然后取消`demo.c`里的注释，再运行
+运行
 
 ```bash
-./chibicc -o demo demo.c && ./demo
+make && ./chibicc -o demo/demo demo/demo.c && ./demo
 ```
 
 来确认工作正常。
 
-## The End
+## To be continued
 
-再次感谢[chibicc](https://github.com/rui314/chibicc)项目，毫无疑问是一个优秀的、简易而不简单的C语言编译器。
-
-这个项目的代码十分优秀，使得我们不需要了解具体细节就可以完成功能的实现。这体现了代码的可扩展性的重要性。相比于扩展功能本身，学习其代码也是收益颇丰。
-
-在给现有项目添加功能时，阅读代码，熟悉接口，遵循其用法便是最佳实践。当然，在有LLM加持的时代，这些功能可以变得更加简单，更加便利。
+下回: [Variable Capture](./variable_capture.md)

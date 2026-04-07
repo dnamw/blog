@@ -59,13 +59,13 @@ plugins:
 markdown_extensions:
   - admonition
   - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.highlight:
       linenums: true
       linenums_style: pymdownx.inline
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.tilde
-  - pymdownx.superfences
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -75,12 +75,14 @@ repo_name: dnamw/blog
 repo_url: https://github.com/dnamw/blog
 
 nav:
-  - Home:
-    - intro: index.md
+  - Home: index.md
   - Programming Tips:
-    - intro: programming_tips/index.md
+    - programming_tips/index.md
     - C String and String_Views: programming_tips/c_string.md
     - Quine: programming_tips/quine.md
   - Tiny Projects:
-    - intro: tiny_projects/index.md
-    - Lambda for C: tiny_projects/lambda_for_c.md
+    - tiny_projects/index.md
+    - Lambda for C:
+      - Intro: tiny_projects/lambda_for_c/intro.md
+      - Simple Lambda: tiny_projects/lambda_for_c/simple_lambda.md
+      - Variable Capture: tiny_projects/lambda_for_c/variable_capture.md
