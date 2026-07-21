@@ -35,14 +35,14 @@ asyncio.run(main()) # 等价于 asyncio.run(coro)
 ```
 
 ??? note "asyncio.run() 背后细节"
-这一步会干很多事情，其中最重要的是，由于这里 `loop_factory` 参数为 `None`，故我们会调用 `asyncio.new_event_loop()` 来创建一个 `event loop`，然后 `main()` 会被包装成一个 `Task`，而 `Task` 正是 `event loop` 中最小的可调度单元，`event loop` 检测到有这样一个任务可以执行，便开始执行它。  
- `event loop` 是一个异步程序的调度中心，理想情况下，应该只有一个 `event loop`，也就是应该**只调用一次** `asyncio.run`。
+    这一步会干很多事情，其中最重要的是，由于这里 `loop_factory` 参数为 `None`，故我们会调用 `asyncio.new_event_loop()` 来创建一个 `event loop`，然后 `main()` 会被包装成一个 `Task`，而 `Task` 正是 `event loop` 中最小的可调度单元，`event loop` 检测到有这样一个任务可以执行，便开始执行它。  
+    `event loop` 是一个异步程序的调度中心，理想情况下，应该只有一个 `event loop`，也就是应该**只调用一次** `asyncio.run`。
 
 在 `main()` 这个 `coroutine function` 内部，我们正常执行打印hello，然后遇到了 `await`，`main` 被阻塞，等待一秒后，`asyncio.sleep()` 结束了，`main()` 继续执行，且可以拿到 `asyncio.sleep()` 的返回值（当然这里没有返回值），然后再打印world，最后退出。
 
 ??? note "await 背后发生了什么"
-这里，`await` 后面跟一个 `coroutine object`，`main()` 就会等待 `asyncio.sleep` 的完成，即挂起，同时会把控制权交还给 `event loop`。当然，粗略的来看，这里交出去没什么用，毕竟 `event loop`里面还是只有 `main` 这一个 `Task`。  
- 换言之，这里 `await` 并没有创建一个新的 `Task`，而是通过调用 `coroutine object` 的 `__wait__()` 方法获得一个迭代器，python会不断驱动这个迭代器。同时，在这个方法里，我们会绑定一个回调函数，它将在 `coroutine object` 完成（事实上，就是迭代器raise一个 `StopIteration`）后，唤醒 `main`，`main` 获得 `coroutine object` 的返回值并重新拿回控制权。然后再执行后面的代码。
+    这里，`await` 后面跟一个 `coroutine object`，`main()` 就会等待 `asyncio.sleep` 的完成，即挂起，同时会把控制权交还给 `event loop`。当然，粗略的来看，这里交出去没什么用，毕竟 `event loop`里面还是只有 `main` 这一个 `Task`。  
+    换言之，这里 `await` 并没有创建一个新的 `Task`，而是通过调用 `coroutine object` 的 `__wait__()` 方法获得一个迭代器，python会不断驱动这个迭代器。同时，在这个方法里，我们会绑定一个回调函数，它将在 `coroutine object` 完成（事实上，就是迭代器raise一个 `StopIteration`）后，唤醒 `main`，`main` 获得 `coroutine object` 的返回值并重新拿回控制权。然后再执行后面的代码。
 
 下面这张图可以把没有 `Task` 的调度过程画得更直观一些：
 
@@ -102,8 +102,8 @@ import asyncio
 import time
 
 async def print_after(content, second):
- await asyncio.sleep(second)
- print(content)
+    await asyncio.sleep(second)
+    print(content)
 
 async def main():
     print(f"started at {time.strftime("%X")}")
@@ -122,9 +122,10 @@ asyncio.run(main())
 这次运行我们会发现只用了2s，这就是最基本的异步使用方式。
 
 ??? note "await的时候有什么变化"
-首先，我们这里 `await` 的不再是 `coroutine object`，而是 `Task`。当然这些都是 awaitable 的，事实上 `Task` 继承自 `Future`，`Future` 也是 awaitable 的。  
- 这里我们在 `main()` 里创建了两个 `Task`，并将其注册到了 `event loop` 里面。这样一来，当 `main` 遇到 `await` 并把控制权交还的时候，`event loop` 就会发现这里还有两个 `Task` 可以执行，于是它就让它们执行起来，实现了异步。  
- 这里与我们初版代码最大的不同在于，通过 `Task`，我们在第一次 `await` 的时候可以让两个方法同时执行。
+    首先，我们这里 `await` 的不再是 `coroutine object`，而是 `Task`。当然这些都是 awaitable 的，事实上 `Task` 继承自 `Future`，`Future` 也是 awaitable 的。  
+    这里我们在 `main()` 里创建了两个 `Task`，并将其注册到了 `event loop` 里面。这样一来，当 `main` 遇到 `await` 并把控制权交还的时候，`event loop` 就会发现这里还有两个 `Task` 可以执行，于是它就让它们执行起来，实现了异步。  
+
+这里与我们初版代码最大的不同在于，通过 `Task`，我们在第一次 `await` 的时候可以让两个方法同时执行。
 
 下面这张图展示了引入 `Task` 之后，`event loop` 的调度流程：
 
@@ -224,7 +225,7 @@ asyncio.run(main())
 > asyncio 锁可被用来保证对共享资源的独占访问。
 
 ??? warning "与线程锁区别"
-要注意这里不是线程之间资源竞争，不能误写成`threading.lock()`，而且这里的 `lock` 本身也是非线程安全的。
+    要注意这里不是线程之间资源竞争，不能误写成`threading.lock()`，而且这里的 `lock` 本身也是非线程安全的。
 
 推荐的实践方式是使用 `async with`，这相当于做了
 
