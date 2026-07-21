@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="760" viewBox="0 0 1400 760" role="img" aria-label="Without Task, the event loop waits for the only runnable coroutine">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fbff"/>
+      <stop offset="100%" stop-color="#eef4ff"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5f8ff"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 z" fill="#3b4a66"/>
+    </marker>
+    <style>
+      .title { font: 700 32px/1.2 "Segoe UI", Arial, sans-serif; fill: #1f2a44; }
+      .subtitle { font: 500 18px/1.4 "Segoe UI", Arial, sans-serif; fill: #52627f; }
+      .label { font: 700 18px/1.2 "Segoe UI", Arial, sans-serif; fill: #1f2a44; }
+      .small { font: 500 15px/1.4 "Segoe UI", Arial, sans-serif; fill: #405067; }
+      .tiny { font: 500 14px/1.4 "Segoe UI", Arial, sans-serif; fill: #52627f; }
+      .box { fill: url(#panel); stroke: #b8c7e6; stroke-width: 2; rx: 18; }
+      .step { fill: #ffffff; stroke: #7c93bf; stroke-width: 2; rx: 16; }
+      .muted { fill: #eff4fb; stroke: #c4d0e6; stroke-width: 2; rx: 16; }
+      .sleep { fill: #fff5e8; stroke: #dba557; stroke-width: 2; rx: 16; }
+      .done { fill: #e9f7ef; stroke: #6bb48a; stroke-width: 2; rx: 16; }
+      .line { stroke: #3b4a66; stroke-width: 3.2; fill: none; marker-end: url(#arrow); }
+      .line-soft { stroke: #5c6f93; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-dasharray: 8 8; }
+      .timeline { stroke: #9fb0cf; stroke-width: 3; }
+      .tick { stroke: #9fb0cf; stroke-width: 2; }
+      .badge { fill: #1f5fbf; }
+      .badge-text { font: 700 13px/1 Arial, sans-serif; fill: #ffffff; letter-spacing: .4px; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1400" height="760" fill="url(#bg)"/>
+
+  <text x="60" y="58" class="title">No Task: the loop only has one thing to run</text>
+  <text x="60" y="92" class="subtitle">The main coroutine yields at await, and the loop has no other runnable task to switch to.</text>
+
+  <rect x="60" y="125" width="1280" height="560" class="box"/>
+
+  <text x="105" y="170" class="label">event loop</text>
+  <text x="105" y="196" class="tiny">single runnable path</text>
+
+  <line x1="125" y1="240" x2="125" y2="610" class="timeline"/>
+  <circle cx="125" cy="260" r="10" fill="#1f5fbf"/>
+  <circle cx="125" cy="420" r="10" fill="#d98c25"/>
+  <circle cx="125" cy="560" r="10" fill="#2b9b5c"/>
+
+  <rect x="210" y="210" width="260" height="80" class="step"/>
+  <text x="240" y="242" class="label">asyncio.run()</text>
+  <text x="240" y="266" class="small">create event loop</text>
+  <path d="M170 260 L210 260" class="line"/>
+
+  <rect x="520" y="210" width="260" height="80" class="step"/>
+  <text x="550" y="242" class="label">main()</text>
+  <text x="550" y="266" class="small">scheduled as the only task</text>
+  <path d="M470 260 L520 260" class="line"/>
+
+  <rect x="840" y="210" width="300" height="80" class="step"/>
+  <text x="870" y="242" class="label">print('hello')</text>
+  <text x="870" y="266" class="small">runs immediately</text>
+  <path d="M780 260 L840 260" class="line"/>
+
+  <rect x="210" y="360" width="320" height="94" class="sleep"/>
+  <text x="240" y="394" class="label">await asyncio.sleep(1)</text>
+  <text x="240" y="420" class="small">main suspends and yields control</text>
+  <path d="M300 290 L300 360" class="line-soft"/>
+  <path d="M530 290 L420 360" class="line-soft"/>
+
+  <rect x="590" y="360" width="350" height="94" class="muted"/>
+  <text x="620" y="394" class="label">event loop idle check</text>
+  <text x="620" y="420" class="small">no other runnable task exists</text>
+  <path d="M530 407 L590 407" class="line"/>
+
+  <rect x="990" y="360" width="280" height="94" class="sleep"/>
+  <text x="1020" y="394" class="label">timer expires</text>
+  <text x="1020" y="420" class="small">wake main after 1s</text>
+  <path d="M940 407 L990 407" class="line"/>
+
+  <rect x="210" y="530" width="260" height="82" class="done"/>
+  <text x="240" y="562" class="label">print('world')</text>
+  <text x="240" y="586" class="small">resume after sleep</text>
+  <path d="M1130 454 L1130 530" class="line-soft"/>
+  <path d="M470 571 L520 571" class="line-soft"/>
+
+  <rect x="520" y="530" width="320" height="82" class="done"/>
+  <text x="550" y="562" class="label">loop exits</text>
+  <text x="550" y="586" class="small">main finishes and returns</text>
+  <path d="M470 571 L520 571" class="line"/>
+
+  <rect x="1040" y="530" width="220" height="82" class="badge" rx="20"/>
+  <text x="1070" y="566" class="badge-text">Only one task</text>
+  <text x="1070" y="588" class="badge-text">is runnable</text>
+</svg>

@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" role="img" aria-label="With Task, the event loop can switch between multiple runnable tasks">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fbfcff"/>
+      <stop offset="100%" stop-color="#eef7f2"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f5fbf7"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L12,6 L0,12 z" fill="#2f5d4c"/>
+    </marker>
+    <style>
+      .title { font: 700 32px/1.2 "Segoe UI", Arial, sans-serif; fill: #183628; }
+      .subtitle { font: 500 18px/1.4 "Segoe UI", Arial, sans-serif; fill: #5a6d63; }
+      .label { font: 700 18px/1.2 "Segoe UI", Arial, sans-serif; fill: #183628; }
+      .small { font: 500 15px/1.4 "Segoe UI", Arial, sans-serif; fill: #486256; }
+      .tiny { font: 500 14px/1.4 "Segoe UI", Arial, sans-serif; fill: #62786e; }
+      .box { fill: url(#panel); stroke: #b7d6c9; stroke-width: 2; rx: 18; }
+      .step { fill: #ffffff; stroke: #88b7a0; stroke-width: 2; rx: 16; }
+      .task1 { fill: #edf7f0; stroke: #69a97d; stroke-width: 2; rx: 16; }
+      .task2 { fill: #eef4ff; stroke: #6d8fd2; stroke-width: 2; rx: 16; }
+      .sleep1 { fill: #fff5e8; stroke: #dba557; stroke-width: 2; rx: 16; }
+      .sleep2 { fill: #fff1f1; stroke: #d07a7a; stroke-width: 2; rx: 16; }
+      .done { fill: #e7f8ef; stroke: #64af82; stroke-width: 2; rx: 16; }
+      .line { stroke: #2f5d4c; stroke-width: 3.2; fill: none; marker-end: url(#arrow); }
+      .line-soft { stroke: #6c8d80; stroke-width: 2.4; fill: none; marker-end: url(#arrow); stroke-dasharray: 8 8; }
+      .timeline { stroke: #9ec4b2; stroke-width: 3; }
+      .tick { stroke: #9ec4b2; stroke-width: 2; }
+      .badge { fill: #1f8a56; }
+      .badge2 { fill: #3778c2; }
+      .badge-text { font: 700 13px/1 Arial, sans-serif; fill: #ffffff; letter-spacing: .4px; }
+    </style>
+  </defs>
+  <rect x="0" y="0" width="1400" height="880" fill="url(#bg)"/>
+
+  <text x="60" y="58" class="title">With Task: the loop can switch to other work</text>
+  <text x="60" y="92" class="subtitle">The main coroutine creates tasks first, so when it yields, the loop can immediately run task1 and task2.</text>
+
+  <rect x="60" y="125" width="1280" height="690" class="box"/>
+
+  <text x="105" y="170" class="label">event loop</text>
+  <text x="105" y="196" class="tiny">multiple runnable tasks</text>
+
+  <line x1="125" y1="240" x2="125" y2="720" class="timeline"/>
+  <circle cx="125" cy="260" r="10" fill="#1f8a56"/>
+  <circle cx="125" cy="415" r="10" fill="#3778c2"/>
+  <circle cx="125" cy="560" r="10" fill="#d98c25"/>
+  <circle cx="125" cy="685" r="10" fill="#5b7bd8"/>
+
+  <rect x="210" y="210" width="260" height="80" class="step"/>
+  <text x="240" y="242" class="label">asyncio.run()</text>
+  <text x="240" y="266" class="small">create event loop</text>
+  <path d="M170 260 L210 260" class="line"/>
+
+  <rect x="520" y="210" width="260" height="80" class="step"/>
+  <text x="550" y="242" class="label">main()</text>
+  <text x="550" y="266" class="small">starts the orchestration</text>
+  <path d="M470 260 L520 260" class="line"/>
+
+  <rect x="840" y="210" width="300" height="80" class="step"/>
+  <text x="870" y="242" class="label">create_task(...) x 2</text>
+  <text x="870" y="266" class="small">register task1 and task2</text>
+  <path d="M780 260 L840 260" class="line"/>
+
+  <rect x="210" y="360" width="300" height="90" class="task1"/>
+  <text x="240" y="394" class="label">task1</text>
+  <text x="240" y="420" class="small">print_after("hello", 2)</text>
+  <path d="M360 290 L360 360" class="line-soft"/>
+
+  <rect x="560" y="360" width="300" height="90" class="task2"/>
+  <text x="590" y="394" class="label">task2</text>
+  <text x="590" y="420" class="small">print_after("world", 2)</text>
+  <path d="M990 290 L710 360" class="line-soft"/>
+
+  <rect x="920" y="360" width="280" height="90" class="step"/>
+  <text x="950" y="394" class="label">main awaits task1</text>
+  <text x="950" y="420" class="small">control returns to loop</text>
+  <path d="M1140 290 L1060 360" class="line-soft"/>
+
+  <rect x="210" y="520" width="280" height="94" class="sleep1"/>
+  <text x="240" y="554" class="label">task1 awaits sleep(2)</text>
+  <text x="240" y="580" class="small">suspends inside the loop</text>
+  <path d="M360 450 L350 520" class="line"/>
+
+  <rect x="560" y="520" width="280" height="94" class="sleep2"/>
+  <text x="590" y="554" class="label">task2 awaits sleep(2)</text>
+  <text x="590" y="580" class="small">also suspended</text>
+  <path d="M710 450 L700 520" class="line"/>
+
+  <rect x="920" y="520" width="280" height="94" class="muted"/>
+  <text x="950" y="554" class="label">loop waits for ready tasks</text>
+  <text x="950" y="580" class="small">both timers are pending</text>
+  <path d="M1060 450 L1060 520" class="line"/>
+
+  <rect x="210" y="675" width="280" height="82" class="done"/>
+  <text x="240" y="707" class="label">task1 wakes</text>
+  <text x="240" y="731" class="small">prints hello and completes</text>
+  <path d="M350 614 L350 675" class="line-soft"/>
+
+  <rect x="560" y="675" width="280" height="82" class="done"/>
+  <text x="590" y="707" class="label">task2 wakes</text>
+  <text x="590" y="731" class="small">prints world and completes</text>
+  <path d="M700 614 L700 675" class="line-soft"/>
+
+  <rect x="920" y="675" width="280" height="82" class="step"/>
+  <text x="950" y="707" class="label">main resumes</text>
+  <text x="950" y="731" class="small">prints ended at and exits</text>
+  <path d="M1060 614 L1060 675" class="line"/>
+
+  <rect x="1020" y="760" width="220" height="50" class="badge" rx="18"/>
+  <text x="1050" y="791" class="badge-text">Task1 and Task2</text>
+
+  <rect x="780" y="760" width="190" height="50" class="badge2" rx="18"/>
+  <text x="810" y="791" class="badge-text">run concurrently</text>
+</svg>
