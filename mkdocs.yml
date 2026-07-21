@@ -55,17 +55,25 @@ plugins:
       date_format: '%Y-%m-%d'
       time_format: '%H:%M:%S'
       show_author: false
+      
+  - mermaid2:
+      version: 10.0.2
 
 markdown_extensions:
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
   - pymdownx.highlight:
       linenums: true
       linenums_style: pymdownx.inline
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.tilde
+  
 
 extra_javascript:
   - javascripts/mathjax.js
@@ -80,6 +88,7 @@ nav:
     - programming_tips/index.md
     - C String and String_Views: programming_tips/c_string.md
     - Quine: programming_tips/quine.md
+    - Asyncio: programming_tips/asyncio.md
   - Tiny Projects:
     - tiny_projects/index.md
     - Lambda for C:
