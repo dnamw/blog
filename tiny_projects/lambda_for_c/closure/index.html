@@ -1,0 +1,1813 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../variable_capture/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Closure - Dnamw's blog | Ciallo～(∠・ω< )⌒★</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/fonts/material-icons.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/backdrop.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/light.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/material.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/scale.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/shift-away.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/tippy/tippy.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/core/core.css">
+    
+      <link rel="stylesheet" href="../../../assets/document_dates/user.config.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#closure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Dnamw&#39;s blog" class="md-header__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Dnamw's blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Closure
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="deep-purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/dnamw/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dnamw/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../programming_tips/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Programming Tips
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tiny Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Dnamw&#39;s blog" class="md-nav__button md-logo" aria-label="Dnamw's blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Dnamw's blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/dnamw/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    dnamw/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../programming_tips/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Programming Tips
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Programming Tips
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming_tips/c_string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C String and String_Views
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming_tips/quine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quine
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../programming_tips/asyncio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Asyncio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tiny Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tiny Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda for C
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lambda for C
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../simple_lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Simple Lambda
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variable_capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Variable Capture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closure
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Closure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词法分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词法分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析闭包类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解析闭包类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#closure_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新增closure_type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ast-node-nd_closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AST Node ND_CLOSURE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        添加到typename
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        支持调用闭包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量按值捕获
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变量按值捕获">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ast-node-nd_captured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AST Node ND_CAPTURED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设计数据结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        触发点判定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在Context中捕获变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析上下文环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        杂项处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        词法分析
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="词法分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析闭包类型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解析闭包类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#closure_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新增closure_type
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ast-node-nd_closure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AST Node ND_CLOSURE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typename" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        添加到typename
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        支持调用闭包
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        变量按值捕获
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变量按值捕获">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ast-node-nd_captured" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AST Node ND_CAPTURED
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        设计数据结构
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        触发点判定
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在Context中捕获变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解析上下文环境
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        杂项处理
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../../" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Tiny Projects
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../intro/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Lambda for C
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="closure">Closure</h1>
+<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-08-11'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-08-11T22:17:39+08:00'>2026-08-11</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-08-11'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-08-11T22:17:39+08:00'>2026-08-11</time></span></div></div></div>
+
+<blockquote>
+<p>上回: <a href="../variable_capture/">Variable Capture</a></p>
+</blockquote>
+<h2 id="_1">词法分析</h2>
+<h3 id="_2">解析闭包类型</h3>
+<h4 id="closure_type">新增closure_type</h4>
+<p>我们新增闭包类型 <code>lambda &lt;return-type&gt; (&lt;params&gt;)</code>，一个闭包类型的变量实际包含两个指针 <code>fn</code> 和 <code>env</code>，其中 <code>fn</code> 指向编译器生成的全局 <code>lambda</code> 函数，而 <code>env</code> 指向创建该 <code>lambda</code> 时在栈上分配的捕获环境块。我们用一个结构体来包裹这两个变量。  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="nf">new_closure_type</span><span class="p">(</span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">closure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">struct_type</span><span class="p">();</span>
+
+<span class="w">  </span><span class="n">Member</span><span class="w"> </span><span class="o">*</span><span class="n">fn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Member</span><span class="p">));</span>
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">ty_void</span><span class="p">);</span>
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">Member</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Member</span><span class="p">));</span>
+<span class="w">  </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">ty_void</span><span class="p">);</span>
+<span class="w">  </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">env</span><span class="o">-&gt;</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">env</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">members</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">return_ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">return_ty</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">params</span><span class="p">;</span>
+<span class="w">  </span><span class="n">closure</span><span class="o">-&gt;</span><span class="n">is_variadic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">is_variadic</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">closure</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>然后，我们在 <code>declspec</code> 函数中处理闭包类型的解析。这里其实只需要跳过 <code>lambda</code> token，后面的解析逻辑与之前 <code>parse</code> 函数中的一致。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="nf">declspec</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">VarAttr</span><span class="w"> </span><span class="o">*</span><span class="n">attr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">basety</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">declspec</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">func_params</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="n">skip</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">basety</span><span class="p">);</span>
+<span class="w">    </span><span class="o">*</span><span class="n">rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tok</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">new_closure_type</span><span class="p">(</span><span class="n">ty</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="ast-node-nd_closure">AST Node ND_CLOSURE</h4>
+<p>另外，我们再添加一种AST节点 <code>ND_CLOSURE</code> 到 <code>chibicc.h</code>，并在 <code>Node</code> 中添加闭包类型需要的属性。</p>
+<p>我们对该 <code>Node</code> 的设计如下：</p>
+<ol>
+<li>用 <code>var</code> 来存储编译期的 <code>fn</code></li>
+<li>添加 <code>env_size</code> 来记录 <code>env</code> 的大小</li>
+<li>添加 <code>captures</code> 来记录哪些变量被捕获（具体类型详见后文）</li>
+<li>添加 <code>closure_slot</code> 来作为槽位，便于后续保存运行期 <code>fn</code> 和 <code>env</code> 的地址。</li>
+</ol>
+<p>当然，别忘了对 <code>type.c</code> 的 <code>add_type()</code> 函数增加对 <code>ND_CLOSURE</code> 类型的处理。</p>
+<p><del>实际上直接return就行，因为 <code>ND_CLOSURE</code> 类型的 <code>node</code> 在创建时就已经设置好 <code>type</code></del></p>
+<h4 id="typename">添加到typename</h4>
+<p>然而，这时如果运行测试，会发现解析仍会报错 "parameter name omitted"。原因是 <code>lambda &lt;return-type&gt; (&lt;params&gt;)</code> 开头的语句，既可能是声明一个闭包，也可能是声明一个函数，而后者要求参数有名字。在 <code>stmt</code> 函数中，解析器用 <code>is_typename</code> 来决定我们是将其当作变量声明还是表达式：如果不把 <code>lambda</code> 当作类型名，语句就会走 <code>stmt() → expr_stmt() → primary()</code> 的 lambda 表达式分支，但我们希望它走声明分支。因此需要把 <code>lambda</code> 注册为关键字，使 <code>is_typename</code> 返回真，从而走 <code>declspec</code> 来解析变量。</p>
+<p><img alt="is_typename的调用" src="../images/is_typename.png" /></p>
+<h3 id="_3">支持调用闭包</h3>
+<p>此时运行测试，看到闭包类型被正确解析，然而会有报错 "not a function"，也就是不支持调用我们的闭包。我们定位到抛出该错误的函数</p>
+<p><img alt="funcall函数" src="../images/funcall.png" /></p>
+<p>我们需要修改判断条件，使得闭包可以被调用。然而我们的闭包本质上是个 struct，所以需要额外给 <code>Type</code> 添加一个 <code>is_lambda</code> 字段，并在之前解析闭包类型时将该属性设为 <code>true</code>。<br />
+关于条件判断：调用方可能是个函数，也可能是函数指针，还可能是个闭包。我们先脱去指针，再判断是否为闭包。  </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_PTR</span><span class="p">)</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">base</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">fn</span><span class="o">-&gt;</span><span class="n">ty</span><span class="p">;</span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">is_closure</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">base</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_STRUCT</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">base</span><span class="o">-&gt;</span><span class="n">is_lambda</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<details class="warning">
+<summary>为什么要判断是否为指针而非判断是否为函数？</summary>
+<p>原代码判断 <code>fn-&gt;ty-&gt;kind == TY_FUNC</code>，是可行的，因为不是函数就是指针，然而我们这种情况不行。<br />
+因为我们除了指针，还有闭包类型。而由于我们闭包设置时已经将 <code>return_ty</code> 和 <code>params</code> 等属性指定好，这意味着闭包是可以执行的。<br />
+因此闭包和函数可以直接执行，而指针不能，所以特判指针即可。</p>
+</details>
+<p>随后修改判断条件，加上对 <code>is_closure</code> 的判断即可。  </p>
+<h3 id="_4">变量按值捕获</h3>
+<p>这里我们要做的工作有</p>
+<ol>
+<li>确认某个变量是否要捕获</li>
+<li>捕获该变量：需要记录原变量是什么、变量的类型，以及计算它在 <code>env</code> 中的偏移量。</li>
+</ol>
+<p>这里我们需要区分普通变量和被捕获的变量，因为在代码生成阶段，后者实际使用地址为 <code>env + offset</code>，因此我们要对被捕获变量做标记。</p>
+<h4 id="ast-node-nd_captured">AST Node ND_CAPTURED</h4>
+<p>我们在 <code>chibicc.h</code> 中新增一种 <code>AST node</code> 名为 <code>ND_CAPTURED</code>。  </p>
+<p>这里我们需要考虑一下这种 <code>node</code> 的设计。使用这种 <code>node</code> 时，我们先获取 <code>env</code> 的地址，再根据成员 <code>member</code> 中的 <code>offset</code> 计算出被捕获变量的实际地址。这一过程恰好与 C 语言中结构体成员的访问方式一致，我们看看 <code>chibicc</code> 中的实现：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">//codegen.c</span>
+
+<span class="k">case</span><span class="w"> </span><span class="no">ND_MEMBER</span><span class="p">:</span>
+<span class="w">  </span><span class="n">gen_addr</span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">lhs</span><span class="p">);</span><span class="w">                                 </span><span class="c1">// %rax = 结构体基址</span>
+<span class="w">  </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;  add $%d, %%rax&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">member</span><span class="o">-&gt;</span><span class="n">offset</span><span class="p">);</span><span class="w">   </span><span class="c1">// 基址 + 成员偏移</span>
+</code></pre></div></td></tr></table></div>
+<p>其中 <code>gen_addr(node-&gt;lhs)</code> 是取结构体的基址，其核心代码为</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">gen_addr</span><span class="p">(</span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">kind</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="no">ND_VAR</span><span class="p">:</span>
+<span class="w">    </span><span class="c1">// Variable-length array, which is always local.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">node</span><span class="o">-&gt;</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_VLA</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;  mov %d(%%rbp), %%rax&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">offset</span><span class="p">);</span><span class="w"> </span><span class="c1">// node-&gt;var-&gt;offset得到相对帧基址的偏移量</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这启发我们，我们可以将 <code>ND_CAPTURED</code> 的 <code>node-&gt;var</code> 用来存储 <code>env</code>，<code>node-&gt;member</code> 存储实际捕获的变量的类型和偏移量。当然，该 <code>node</code> 本身的类型应当与被捕获变量以及 <code>node-&gt;member-&gt;ty</code> 保持一致。</p>
+<p>我们来编写 <code>new_captured_node</code> 函数（这里的 <code>ctx</code> 变量会在后文解释，我们知道它携带 <code>env</code> 字段即可）</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="nf">new_captured_node</span><span class="p">(</span><span class="n">LambdaCtx</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">Member</span><span class="w"> </span><span class="o">*</span><span class="n">member</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_node</span><span class="p">(</span><span class="n">ND_CAPTURED</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">env</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">member</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">member</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">member</span><span class="o">-&gt;</span><span class="n">ty</span><span class="p">;</span><span class="w"> </span><span class="c1">// 标注类型</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">node</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>同时，别忘了在 <code>type.c</code> 的 <code>add_type</code> 函数中增加对 <code>ND_CAPTURED</code> 类型的处理。</p>
+<p><img alt="add_captured_type" src="../images/add_captured_type.png" /></p>
+<h4 id="_5">设计数据结构</h4>
+<p>之后，我们来考虑实际的变量捕获场景：</p>
+<ol>
+<li>我们需要一个上下文确定是否在 <code>lambda</code> 函数中。</li>
+<li>我们需要把创建该 <code>lambda</code> 所在作用域的局部变量链表保存一份副本，用来判断哪些变量 <code>lambda</code> 能够捕获。这份副本取名为 <code>creation_locals</code></li>
+<li>我们需要一个链表来记录该 <code>lambda</code> 捕获了哪些变量，防止重复捕获。</li>
+<li>如果有嵌套 <code>lambda</code>，我们需要判断在 <code>creation_locals</code> 中不能捕获的变量，能否在更外层的环境中捕获。因此，我们的上下文应该设计成链表。</li>
+</ol>
+<details class="note">
+<summary>嵌套 <code>lambda</code> 示例</summary>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="n">lambda</span><span class="w"> </span><span class="nf">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">outer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">lambda</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="n">inner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ok</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">base</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inner</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">base</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="n">outer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div></td></tr></table></div>
+这里 <code>ok</code> 是 <code>inner</code> 能直接捕获到的，但是 <code>base</code> 要交给 <code>outer</code> 来捕获。</p>
+</details>
+<p>我们设计如下数据结构：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Capture</span><span class="w"> </span><span class="n">Capture</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Capture</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Capture</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">src</span><span class="p">;</span><span class="w"> </span><span class="c1">// the original variable being captured</span>
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">src_node</span><span class="p">;</span><span class="w"> </span><span class="c1">// expression yielding the source value (for codegen)</span>
+<span class="w">  </span><span class="n">Member</span><span class="w"> </span><span class="n">member</span><span class="p">;</span><span class="w">  </span><span class="c1">// {ty, offset} of the captured value in the env block</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">LambdaCtx</span><span class="w"> </span><span class="n">LambdaCtx</span><span class="p">;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">LambdaCtx</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">LambdaCtx</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">env_size</span><span class="p">;</span><span class="w">         </span><span class="c1">// running size of the environment block</span>
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="p">;</span><span class="w">             </span><span class="c1">// hidden environment parameter (void *env)</span>
+<span class="w">  </span><span class="n">Capture</span><span class="w"> </span><span class="o">*</span><span class="n">captures</span><span class="p">;</span><span class="w">    </span><span class="c1">// variables captured by this lambda</span>
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">creation_locals</span><span class="p">;</span><span class="w"> </span><span class="c1">// locals of the function creating this lambda</span>
+<span class="p">};</span>
+
+<span class="c1">// Whether we are parsing a lambda function or not. A lambda has its own</span>
+<span class="c1">// parsing context while its body is being parsed.</span>
+<span class="k">static</span><span class="w"> </span><span class="n">LambdaCtx</span><span class="w"> </span><span class="o">*</span><span class="n">lambda_ctx</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="_6">触发点判定</h4>
+<p>我们需要判定一个变量是否需要捕获，条件和之前的文章相同，即</p>
+<ol>
+<li>是局部变量</li>
+<li>不在当前函数（lambda 自身）的 locals 里</li>
+<li>确实在某个 lambda 的函数体内</li>
+</ol>
+<p>但是条件判断有两个变化：一是使用 <code>lambda_ctx</code> 是否为空来判断是否在某个 lambda 的函数体内；二是将 <code>is_local_in_current_fn</code> 重构为下面的 <code>is_var_in_list</code>，调用时以 <code>locals</code> 作为第二个参数传入。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">is_var_in_list</span><span class="p">(</span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">list</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="p">;</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">v</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">var</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>该函数在后续仍有作用，用于判断一个变量是否在创建该 <code>lambda</code> 的作用域（即 <code>creation_locals</code>）中。</p>
+<h4 id="context">在Context中捕获变量</h4>
+<p>原有的 <code>capture_lambda_var</code> 的问题已在前文叙述，现重构为 <code>static Node *capture_var(LambdaCtx *ctx, Obj *var, Token *tok)</code>，用于在一个 <code>lambda_ctx</code> 中捕获一个变量，并返回 <code>ND_CAPTURED</code> 节点。</p>
+<p>流程分为四步：</p>
+<ol>
+<li>判断是否已经捕获过避免重复捕获</li>
+<li>判断是否是支持捕获的类型</li>
+<li>获取变量来源：如果变量位于 <code>creation_locals</code>（即创建该 <code>lambda</code> 的作用域）中，来源就是变量本身；如果变量处于嵌套上下文中、应当由父级 <code>lambda</code> 捕获，则应将来源指定为父级 <code>lambda</code> 捕获后产生的 <code>ND_CAPTURED</code> 节点</li>
+<li>执行捕获，记录变量的类型，计算其在 <code>env</code> 中的偏移量，并更新 <code>env</code> 的大小，再更新捕获链表</li>
+</ol>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="nf">capture_var</span><span class="p">(</span><span class="n">LambdaCtx</span><span class="w"> </span><span class="o">*</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="n">Capture</span><span class="w"> </span><span class="o">*</span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">captures</span><span class="p">;</span><span class="w"> </span><span class="n">cap</span><span class="p">;</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">src</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">var</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">new_captured_node</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_ARRAY</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_VLA</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">kind</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">TY_FUNC</span><span class="p">)</span>
+<span class="w">    </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda capture by value does not support this type&quot;</span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">src_node</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">is_var_in_list</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">creation_locals</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">src_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_var_node</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">    </span><span class="n">src_node</span><span class="o">-&gt;</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">src_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">capture_var</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">error_tok</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;cannot capture this variable in a lambda&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">Capture</span><span class="o">*</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">Capture</span><span class="p">));</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">src</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">src_node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">src_node</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="o">-&gt;</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">align</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">align_to</span><span class="p">(</span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">env_size</span><span class="p">,</span><span class="w"> </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">align</span><span class="p">);</span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">env_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">offset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">.</span><span class="n">ty</span><span class="o">-&gt;</span><span class="n">size</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">captures</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ctx</span><span class="o">-&gt;</span><span class="n">captures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cap</span><span class="p">;</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">new_captured_node</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cap</span><span class="o">-&gt;</span><span class="n">member</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="_7">解析上下文环境</h4>
+<p>回到一切的起点，也就是 <code>primary</code> 函数中的 <code>lambda</code> 分支。这里解析函数的逻辑不变，我们只需要设置变量捕获的上下文，并在最后做一个判断：如果没有变量被捕获，就直接把 <code>lambda</code> 表达式翻译成一个匿名全局函数；否则将其解析为一个闭包。</p>
+<p>这里，除了设置 <code>lambda_ctx</code>，我们还需要生成环境参数 <code>env</code>，并将其作为最终生成的 lambda 函数的第一个隐藏参数。当然，如果没有变量被捕获，就不需要这个 <code>env</code> 参数。</p>
+<p>具体实现：</p>
+<p>生成 <code>env</code> 指针，由于 <code>new_lvar</code> 使用头插法，故此时参数列表为 <code>[env, (sret), params...]</code>，然后设置上下文</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pointer_to</span><span class="p">(</span><span class="n">ty_void</span><span class="p">));</span>
+<span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">locals</span><span class="p">;</span><span class="w"> </span><span class="c1">// `env` as the first parameter, then (sret) and params</span>
+<span class="n">LambdaCtx</span><span class="w"> </span><span class="n">ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">lambda_ctx</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">saved_locals</span><span class="p">};</span>
+<span class="n">lambda_ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ctx</span><span class="p">;</span>
+</code></pre></div></td></tr></table></div>
+<p>在解析完函数体后，我们获取 <code>captures</code>，看看有没有捕获变量，如果没有就将其解析为函数指针，同时不将 <code>env</code> 变量作为第一个隐藏参数，并在 <code>locals</code> 中删去 <code>env</code>。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">lambda_ctx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda_ctx</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="n">Capture</span><span class="w"> </span><span class="o">*</span><span class="n">captures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">captures</span><span class="p">;</span>
+<span class="n">fn</span><span class="o">-&gt;</span><span class="n">params</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">captures</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">params</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">params</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span><span class="w"> </span><span class="c1">// skip `env` if no captures</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">captures</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">remove_lvar</span><span class="p">(</span><span class="n">env</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>这里 <code>remove_lvar</code> 的实现参考了 Linus Torvalds 在 2016 年 TED 演讲中提到的 demo。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1">// assume that `target` is in the `locals` list</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">remove_lvar</span><span class="p">(</span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">**</span><span class="n">indirect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">locals</span><span class="p">;</span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">((</span><span class="o">*</span><span class="n">indirect</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">indirect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="p">(</span><span class="o">*</span><span class="n">indirect</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="o">*</span><span class="n">indirect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>最后生成 AST 节点：如果没有捕获变量，则返回函数指针；否则返回 <code>ND_CLOSURE</code> 节点。此时根据解析到的函数类型 <code>ty</code> 生成闭包类型，再新建一个变量作为槽位，并设置 <code>node</code> 的相关属性。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="n">node</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">captures</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Type</span><span class="w"> </span><span class="o">*</span><span class="n">closure_ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_closure_type</span><span class="p">(</span><span class="n">ty</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Obj</span><span class="w"> </span><span class="o">*</span><span class="n">closure_slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_lvar</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">closure_ty</span><span class="p">);</span>
+<span class="w">  </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_node</span><span class="p">(</span><span class="n">ND_CLOSURE</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fn</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">ty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closure_ty</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">env_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ctx</span><span class="p">.</span><span class="n">env_size</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">captures</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">captures</span><span class="p">;</span>
+<span class="w">  </span><span class="n">node</span><span class="o">-&gt;</span><span class="n">closure_slot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">closure_slot</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">VarScope</span><span class="w"> </span><span class="o">*</span><span class="n">sc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">find_var_c_str</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>
+<span class="w">  </span><span class="n">node</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_unary</span><span class="p">(</span><span class="n">ND_ADDR</span><span class="p">,</span><span class="w"> </span><span class="n">new_var_node</span><span class="p">(</span><span class="n">sc</span><span class="o">-&gt;</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">start</span><span class="p">),</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_8">杂项处理</h3>
+<p>此时再次运行测试，发现编译仍然不能通过，报错信息为</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>test/lambda.c:51:   ASSERT(42, (lambda int(int x) { return x * 2; })(21));
+                                                  ^ expected &#39;)&#39;
+make: *** [Makefile:17: test/lambda.exe] Error 1
+</code></pre></div></td></tr></table></div>
+<p>用 gdb 追踪调用堆栈，发现是 <code>cast</code> 函数的问题：<code>lambda</code> 作为类型名让 <code>cast</code> 误以为要强制转换，于是加入排除条件</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="nf">cast</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// A `(lambda ...)` expression is a parenthesized lambda expression,</span>
+<span class="w">  </span><span class="c1">// not a cast.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">is_typename</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">unary</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">tok</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>之后运行测试发现还不行。再看 <code>cast</code> 函数末尾，发现它会走到 <code>unary</code>，而 <code>unary</code> 末尾又会走到 <code>postfix</code>。<code>postfix</code> 开头做了和 <code>cast</code> 类似的判断，因此也需要排除；由于 <code>postfix</code> 会调用 <code>primary</code>，之后会走到我们编写的 lambda 解析分支，路径是正确的，所以只需排除 <code>postfix</code> 的影响即可。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="n">Node</span><span class="w"> </span><span class="o">*</span><span class="nf">postfix</span><span class="p">(</span><span class="n">Token</span><span class="w"> </span><span class="o">**</span><span class="n">rest</span><span class="p">,</span><span class="w"> </span><span class="n">Token</span><span class="w"> </span><span class="o">*</span><span class="n">tok</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// A `(lambda ...)` expression is a parenthesized lambda expression,</span>
+<span class="w">  </span><span class="c1">// not a compound literal.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">is_typename</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="n">equal</span><span class="p">(</span><span class="n">tok</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lambda&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+<p>再次执行测试，编译通过，至此，词法分析阶段结束，之后我们需要在生成代码时将闭包加上去。</p>
+<blockquote>
+<p>To be continued</p>
+</blockquote>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["content.code.select", "content.code.copy", "content.code.cop", "navigation.tabs", "navigation.top", "navigation.indexes", "navigation.path"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../../assets/document_dates/tippy/popper.min.js"></script>
+      
+        <script src="../../../assets/document_dates/tippy/tippy.umd.min.js"></script>
+      
+        <script src="../../../assets/document_dates/core/md5.min.js"></script>
+      
+        <script src="../../../assets/document_dates/core/default.config.js"></script>
+      
+        <script src="../../../assets/document_dates/user.config.js"></script>
+      
+        <script src="../../../assets/document_dates/core/utils.js"></script>
+      
+        <script src="../../../assets/document_dates/core/core.js"></script>
+      
+    
+  </body>
+</html>
