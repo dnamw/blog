@@ -1219,47 +1219,46 @@
 
 
 <h1 id="quine">Quine</h1>
-<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-03-26'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-03-26T17:19:20+08:00'>2026-03-26</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-03-26'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-03-26T21:58:57+08:00'>2026-03-26</time></span></div></div></div>
+<div class='document-dates-plugin-wrapper document-dates-top'><div class='document-dates-plugin' locale=''><div class='dd-left'><span class='dd-item' data-tippy-content data-tippy-raw='2026-03-26'><span class='material-icons' data-icon='doc_created'></span><time datetime='2026-03-26T17:19:20+08:00'>2026-03-26</time></span><span class='dd-item' data-tippy-content data-tippy-raw='2026-09-15'><span class='material-icons' data-icon='doc_updated'></span><time datetime='2026-09-15T14:58:45+08:00'>2026-09-15</time></span></div></div></div>
 
 <blockquote>
-<p>Quine 是一种计算机程序，执行后能够打印出自身的源码。</p>
+<p>Quine 是一类计算机程序，运行后会输出自身的源代码。</p>
 </blockquote>
 <h2 id="_1">为什么会存在这样的程序</h2>
-<p>自己创造自己，是一件很反直觉的事。在现实生活中，创造某物往往需要借助外力。例如，游戏由人创造出来，游戏不可能自己开发自己。然而，生命却是一种神奇的东西：细胞可以一分为二，生命可以自己创造自己。那么，人类为什么想写一个能打印自身源码的程序呢？或许也是生物的本能吧 :)</p>
-<p>先别急着写这样一个程序，我们得先知道在理论上，是否存在这样的程序。因此，我们需要借助可计算理论的力量，快速入门一下可计算理论。</p>
+<p>自我创造是一件相当反直觉的事。在现实生活中，创造某物通常需要借助外力。例如，游戏由人创造，它不可能自行开发自身。然而生命却十分神奇：细胞可以一分为二，生命能够自我复制。那么，人类为什么想写一个能打印自身源码的程序呢？或许也源自某种生物本能吧 :)</p>
+<p>不过先别急着动手。我们首先要知道：理论上是否存在这样的程序？为此，需要借助可计算理论，快速了解一些基本概念。</p>
 <h3 id="_2">可计算理论</h3>
-<p>我们给计算机程序起个名字，叫<strong>可计算函数</strong>。例如，简单的 <span class="arithmatex">\(f(x) = x + 1\)</span> 就是一个可计算函数，它对任意输入 <span class="arithmatex">\(x\)</span> 都有输出，这样的函数我们称为<strong>全函数</strong>。而有些函数在某些输入上会没有结果（例如程序死循环或发生错误），这种函数叫做<strong>部分函数</strong>。</p>
-<p>对于计算机程序而言，一切输入输出本质上都是整数，而计算机程序本身也不过是一串整数。因此，我们可以给每个程序一个编号，用这个编号来代表程序。
-我们用 <span class="arithmatex">\(\phi_n\)</span> 来表示编号为 <span class="arithmatex">\(n\)</span> 的程序，那么 <span class="arithmatex">\(\phi_n(x)\)</span> 就是程序 <span class="arithmatex">\(n\)</span> 在输入 <span class="arithmatex">\(x\)</span> 下的输出。</p>
-<p>接下来我们看两个重要定理。</p>
+<p>在可计算理论中，我们把计算机程序所计算的函数称为<strong>可计算函数</strong>。例如，简单的 <span class="arithmatex">\(f(x) = x + 1\)</span> 就是一个可计算函数；它对任意输入 <span class="arithmatex">\(x\)</span> 都有输出，这样的函数称为<strong>全函数</strong>。而有些函数在某些输入上没有结果（例如程序死循环或出错），这类函数称为<strong>部分函数</strong>。</p>
+<p>对计算机程序而言，一切输入输出本质上都可以编码为整数，而程序本身也不过是一串整数。因此，我们可以给每个程序分配一个编号，并用编号代表程序。用 <span class="arithmatex">\(\phi_n\)</span> 表示编号为 <span class="arithmatex">\(n\)</span> 的程序，那么 <span class="arithmatex">\(\phi_n(x)\)</span> 就是程序 <span class="arithmatex">\(n\)</span> 在输入 <span class="arithmatex">\(x\)</span> 下的输出。</p>
+<p>接下来看两个重要定理。</p>
 <h4 id="_3">普适性定理</h4>
 <p>存在一个<strong>通用程序</strong> <span class="arithmatex">\(u\)</span>，使得</p>
 <div class="arithmatex">\[
 \phi_u(n, x) = \phi_n(x)
 \]</div>
-<p>也就是说，把程序编号 <span class="arithmatex">\(n\)</span> 和它的输入 <span class="arithmatex">\(x\)</span> 一起交给通用程序 <span class="arithmatex">\(u\)</span>，它就能模拟程序 <span class="arithmatex">\(n\)</span> 在 <span class="arithmatex">\(x\)</span> 上的运行结果。</p>
-<p>这个通用程序，是不是感觉和我们现在计算机里的解释器很相似呢？</p>
+<p>也就是说，把程序编号 <span class="arithmatex">\(n\)</span> 和输入 <span class="arithmatex">\(x\)</span> 一起交给通用程序 <span class="arithmatex">\(u\)</span>，它就能模拟程序 <span class="arithmatex">\(n\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上的运行结果。</p>
+<p>这个通用程序是不是很像现代计算机中的解释器？</p>
 <h4 id="s-m-n">s-m-n 定理（参数化定理）</h4>
-<p>如果 <span class="arithmatex">\(\phi_n(y, x)\)</span> 是一个接受两个参数的程序，那么对于任意固定的 <span class="arithmatex">\(y\)</span>，我们可以<strong>自动构造</strong>一个新程序，它只接受一个参数 <span class="arithmatex">\(x\)</span>，并且行为等同于把 <span class="arithmatex">\(y\)</span> 固定后的结果。即存在一个可计算函数 <span class="arithmatex">\(s(n, y)\)</span>，使得</p>
+<p>如果 <span class="arithmatex">\(\phi_n(y, x)\)</span> 是一个接受两个参数的程序，那么对于任意固定的 <span class="arithmatex">\(y\)</span>，我们可以<strong>自动构造</strong>一个新程序：它只接受一个参数 <span class="arithmatex">\(x\)</span>，行为等同于把 <span class="arithmatex">\(y\)</span> 固定后的结果。也就是说，存在可计算函数 <span class="arithmatex">\(s(n, y)\)</span>，使得</p>
 <div class="arithmatex">\[
 \phi_{s(n, y)}(x) = \phi_n(y, x)
 \]</div>
 <p>这其实就是编程里的<strong>柯里化</strong>（Currying）。</p>
-<p>了解了上述两个定理，我们来看最重要的不动点定理，它与我们的 Quine 程序息息相关。</p>
+<p>了解这两个定理后，再来看最重要的不动点定理。它与 Quine 程序密切相关。</p>
 <h4 id="_4">不动点定理</h4>
 <p>设 <span class="arithmatex">\(h: \mathbb{N} \to \mathbb{N}\)</span> 是一个可计算的全函数，那么存在一个自然数 <span class="arithmatex">\(n\)</span>，使得</p>
 <div class="arithmatex">\[
 \phi_n = \phi_{h(n)}
 \]</div>
 <p>即程序 <span class="arithmatex">\(n\)</span> 和程序 <span class="arithmatex">\(h(n)\)</span> 计算同一个函数。</p>
-<p>简易证明：
-<span class="arithmatex">\(\forall t\)</span>，考虑 <span class="arithmatex">\(\phi_t(t)\)</span>，即以程序自身作为输入。根据 <strong>s-m-n 定理</strong>，我们可以构造一个变换 <span class="arithmatex">\(s\)</span>，使得 <span class="arithmatex">\(\phi_{s(t,t)} = \phi_t(t)\)</span>。</p>
-<p>进一步，我们将变换 <span class="arithmatex">\(h\)</span> 作用于 <span class="arithmatex">\(s(t,t)\)</span> 上，得到 <span class="arithmatex">\(h(s(t,t))\)</span>。</p>
-<p>现在我们考虑 <span class="arithmatex">\(\phi_{h(s(t,t))}\)</span>，它是一个没有输入的函数，它的程序却是以 <span class="arithmatex">\(t\)</span> 为输入、经过 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(h\)</span> 变换得到的。那么，对于这样一个程序，由普适性定理，结合 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(h\)</span> 的可计算性，我们可以找到一个程序 <span class="arithmatex">\(m\)</span>，满足 <span class="arithmatex">\(\phi_m(t) = \phi_{h(s(t,t))}\)</span>。现在，我们声称</p>
+<p>简证：
+对任意 <span class="arithmatex">\(t\)</span>，考虑 <span class="arithmatex">\(\phi_t(t)\)</span>，也就是以程序自身作为输入。根据 <strong>s-m-n 定理</strong>，我们可以构造一个变换 <span class="arithmatex">\(s\)</span>，使得 <span class="arithmatex">\(\phi_{s(t,t)} = \phi_t(t)\)</span>。</p>
+<p>接着，将变换 <span class="arithmatex">\(h\)</span> 作用于 <span class="arithmatex">\(s(t,t)\)</span>，得到 <span class="arithmatex">\(h(s(t,t))\)</span>。</p>
+<p>现在考虑 <span class="arithmatex">\(\phi_{h(s(t,t))}\)</span>。它本身不接受输入，但其程序编号是以 <span class="arithmatex">\(t\)</span> 为输入、经过 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(h\)</span> 变换得到的。对于这样一个程序，根据普适性定理，并结合 <span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(h\)</span> 的可计算性，可以找到一个程序 <span class="arithmatex">\(m\)</span>，满足 <span class="arithmatex">\(\phi_m(t) = \phi_{h(s(t,t))}\)</span>。现在断言</p>
 <div class="arithmatex">\[
 n = s(m,m)
 \]</div>
-<p>就是我们要找的不动点。
+<p>就是所需的不动点。
 验证：</p>
 <div class="arithmatex">\[
 \phi_n = \phi_{s(m,m)} = \phi_m(m)
@@ -1267,19 +1266,17 @@ n = s(m,m)
 <div class="arithmatex">\[
 \phi_{h(n)} = \phi_{h(s(m,m))} = \phi_m(m)
 \]</div>
-<p>即证。</p>
+<p>证毕。</p>
 <h4 id="quine_1">Quine 的合理性</h4>
-<p>现在，我们假设 <span class="arithmatex">\(h(t)\)</span> 是这样的程序：它打印 <span class="arithmatex">\(t\)</span> 的源代码。
-那么，由不动点定理，存在一个程序 <span class="arithmatex">\(n\)</span> 为 <span class="arithmatex">\(h\)</span> 的不动点，那么程序 <span class="arithmatex">\(n\)</span> 就是一个打印自身源代码的程序。
-于是，我们就有了 <strong>Quine</strong> 程序。</p>
+<p>现在假设 <span class="arithmatex">\(h(t)\)</span> 是一个打印 <span class="arithmatex">\(t\)</span> 的源代码的程序。那么由不动点定理，存在程序 <span class="arithmatex">\(n\)</span> 是 <span class="arithmatex">\(h\)</span> 的不动点，因此程序 <span class="arithmatex">\(n\)</span> 会打印自身的源代码。于是，我们就得到了 <strong>Quine</strong> 程序。</p>
 <h2 id="c">用 C 语言来写这样一个程序</h2>
 <blockquote>
 <p>Reference: <a href="https://www.youtube.com/watch?v=QGm-d5Ch5JM">Self-Reproducing Programs By Tsoding</a></p>
 </blockquote>
 <h3 id="_5">初试牛刀</h3>
-<p>一个简单但不容易想到的思路是，我们有一个能指向源代码的字符串，然后输出这个字符串就行了。</p>
+<p>一个简单却不容易想到的思路是：用一个字符串保存源代码，然后输出这个字符串。</p>
 <blockquote>
-<p>正如上述证明的开头一样，我们得把自己包含在自己当中。尽管这很奇怪，但我们感觉这应该是有效的。</p>
+<p>正如上述证明的开头那样，程序必须把自身包含在自身之中。这听起来很奇怪，但直觉上应该是可行的。</p>
 </blockquote>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
@@ -1295,8 +1292,8 @@ n = s(m,m)
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>当然，这段程序输出的是空白内容，因为 <code>self</code> 什么都没有。</p>
-<p>现在，我们手动让 <code>self</code> 包含程序的源代码，但直接复制是不行的。我们需要处理换行符和双引号。具体而言，我们要把换行符手动替换为 <code>\n</code>，把双引号手动替换为 <code>\"</code>。</p>
+<p>当然，这段程序只会输出空白，因为 <code>self</code> 中没有任何内容。</p>
+<p>现在，手动让 <code>self</code> 包含程序源代码。但不能直接复制，因为需要处理换行符和双引号：把换行符替换为 <code>\n</code>，把双引号替换为 <code>\"</code>。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1312,7 +1309,7 @@ n = s(m,m)
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_6">包含自己？</h3>
-<p>现在，运行这段代码，我们得到如下输出：</p>
+<p>运行这段代码，得到如下输出：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span>
@@ -1327,9 +1324,9 @@ int main() {
   return 0;
 }
 </code></pre></div></td></tr></table></div>
-<p>不错，有输出了，但问题是这里 <code>self</code> 的内容并没有被输出出来。此时，一个常见的想法是：我修改 <code>self</code> 包含的内容，但这显然会导致无限递归。</p>
-<p>所以，让我们重新审视 <code>self</code> 变量。正是因为 <code>self</code> 是一个变量，所以我们能做的事情更多：一个变量可以反复使用，我们也可以反复打印它。</p>
-<p>我们的思路如下：我们在 <code>self</code> 变量中设置一个 <strong>锚点</strong>（anchor），这个字符是我们的代码不会用到的。然后我们逐字打印 <code>self</code>，如果遇到了这个锚点，就意味着我们需要再次打印一遍 <code>self</code> 变量，我们再次打印即可。在这里，我们不妨取锚点为 <code>?</code>。</p>
+<p>输出是有了，但问题在于 <code>self</code> 的内容本身并没有被打印出来。一个常见的想法是修改 <code>self</code> 包含的内容，但这显然会导致无限递归。</p>
+<p>因此，让我们重新审视 <code>self</code> 变量。正因为 <code>self</code> 是一个变量，我们才有更多操作空间：变量可以被反复使用，也可以被反复打印。</p>
+<p>思路如下：在 <code>self</code> 中设置一个 <strong>锚点</strong>（anchor），并确保代码中不会直接使用这个字符。然后逐字符打印 <code>self</code>；如果遇到锚点，就说明需要再次打印整个 <code>self</code>。这里不妨取锚点为 <code>?</code>。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1360,7 +1357,7 @@ int main() {
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>我们再让 <code>self</code> 重新包含源代码，这样得到我们的第二版程序：</p>
+<p>再让 <code>self</code> 重新包含源代码，就得到第二版程序：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1392,7 +1389,7 @@ int main() {
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_7">处理转义</h3>
-<p>现在，我们运行第二版程序：</p>
+<p>现在运行第二版程序：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1489,8 +1486,8 @@ int main() {
   return 0;
 }
 </code></pre></div></td></tr></table></div>
-<p>不错，这次 <code>self</code> 可以输出自己包含的内容了，但还是有点不对。一个明显的问题是，<code>self</code> 输出的 <code>\n</code>、<code>\"</code> 被转义了，所以打印的是转义后的字符，而原来的转义符号 <code>\</code> 没了。</p>
-<p>因此，我们在输出 <code>self</code> 时，需要对其中的转义字符做特殊处理，所以我们得再一次遍历 <code>self</code>，这次是为了处理转义字符。</p>
+<p>不错，这次 <code>self</code> 可以输出自身包含的内容了，但仍有问题。一个明显的问题是：<code>self</code> 中写成 <code>\n</code>、<code>\"</code> 的片段在 C 字符串里已经被解释为换行和双引号，因此直接打印时只会得到实际换行和双引号，而源代码中需要的反斜杠却丢失了。</p>
+<p>因此，在输出 <code>self</code> 时，需要对其中的转义字符做特殊处理。也就是说，要再遍历一次 <code>self</code>，专门处理转义字符。</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1543,14 +1540,14 @@ int main() {
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>当然，这里同时引出一个新的问题：我们在源代码中使用了 <code>\\</code>，这个东西在 <code>self</code> 中也会被转义成单独的 <code>\</code>，所以我们还需要特殊处理：</p>
+<p>当然，这又引出一个新问题：源代码中使用了 <code>\\</code>，它在 <code>self</code> 中会被转义成单个 <code>\</code>，所以还需要特殊处理：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
 <span class="normal">2</span>
 <span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="sc">&#39;\\&#39;</span><span class="p">:</span>
 <span class="w">  </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\\\\</span><span class="s">&quot;</span><span class="p">);</span>
 <span class="w">  </span><span class="k">break</span><span class="p">;</span>
 </code></pre></div></td></tr></table></div>
-<p>好了，我们整合上面的修改，再让 <code>self</code> 包含源代码。注意，此时 <code>\</code> 也要被我们处理成 <code>\\</code>，而且要先于 <code>\n</code> 和 <code>"</code> 的处理。我们得到第三版程序：</p>
+<p>整合上述修改，再让 <code>self</code> 包含源代码。注意，此时 <code>\</code> 也要处理成 <code>\\</code>，并且要放在 <code>\n</code> 和 <code>"</code> 之前处理。于是得到第三版程序：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1610,7 +1607,7 @@ int main() {
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
 <h3 id="_8">最后一问？</h3>
-<p>好了，现在，我们运行第三版程序：</p>
+<p>现在运行第三版程序：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1669,12 +1666,12 @@ int main() {
   return 0;
 }
 </code></pre></div></td></tr></table></div>
-<p>很好，现在 <code>self</code> 的内容打印没有任何问题了，但是还有一个明显的问题：在判断条件那一行，我们设置的 <code>?</code> 本来是作为锚点，标志着什么时候要输出 <code>self</code>，结果在这里被错误地展开了。想想也是，我们设置锚点的原则是，我们不会在代码中用到这个字符，然而我们注定要把这个字符写进代码，这不是矛盾了吗？</p>
-<p>实则不然。我们注意到我们的原则是不能<strong>直接用到</strong>这个字符，但我们可以间接使用，那就是用 <strong>ASCII</strong> 码。</p>
+<p>很好，现在 <code>self</code> 的内容打印已经没问题了，但还有一个明显的问题：在判断条件那一行，我们设置的 <code>?</code> 原本是作为锚点，用来标记何时输出 <code>self</code>，结果这里也被错误地展开了。细想之下也合理：锚点的原则是代码中不直接使用该字符，但我们又必须把这个字符写进代码，这岂不是矛盾？</p>
+<p>其实并不矛盾。原则是不<strong>直接使用</strong>这个字符，但可以间接使用它，例如使用它的 <strong>ASCII</strong> 码。</p>
 <blockquote>
 <p><code>?</code> 的 ASCII 码是 63。</p>
 </blockquote>
-<p>所以，让我们做最后一次修改，并把修改后的代码重新处理并包含到 <code>self</code> 中，得到我们的最终版本代码：</p>
+<p>因此，做最后一次修改：把判断条件中的 <code>'?'</code> 改为 <code>63</code>，再把修改后的代码重新转义并放入 <code>self</code>，就得到最终版本：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1733,7 +1730,7 @@ int main() {
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></td></tr></table></div>
-<p>现在，我们运行，得到如下结果：</p>
+<p>现在运行程序，得到如下结果：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
@@ -1792,13 +1789,13 @@ int main() {
   return 0;
 }
 </code></pre></div></td></tr></table></div>
-<p>应该是一模一样的了。我们将输出重定向到文件，再 <code>diff</code> 一下：</p>
+<p>应当已经完全一致。将输出重定向到文件，再用 <code>diff</code> 比较：</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>gcc<span class="w"> </span>quine.c<span class="w"> </span>-o<span class="w"> </span>quine<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./quine<span class="w"> </span>&gt;<span class="w"> </span>q.c<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>diff<span class="w"> </span>-u<span class="w"> </span>quine.c<span class="w"> </span>q.c
 </code></pre></div></td></tr></table></div>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$
 </code></pre></div></td></tr></table></div>
 <p>没有任何输出，完全一致！</p>
-<p>本文完结~</p>
+<p>本文完。</p>
 
 
 
